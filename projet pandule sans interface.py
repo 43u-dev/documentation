@@ -1,40 +1,49 @@
-mot = ["quoi","errath","fini"]
+import random
+choix = ["casserole", "cuillere", "patate", "souris","salvador","eseo"]
+solution = random.choice(choix)
 
+solution = "casserole"
+tentatives = 6
+affichage = ""
+lettres_trouvees = ""
 
-lettre =[]
-motCache = []
-for lettreDuMot in mot:
-    lettre.append(lettreDuMot)
-    motCache.append("-")
+for l in solution:
+  affichage = affichage + "_ "
 
+print(">> Bienvenue dans le pendu <<")
 
-print(lettre)
-print(motCache)
+while tentatives > 0:
+  print("\nMot à deviner : ", affichage)
+  proposition = input("proposez une lettre : ")[0:1].lower()
 
+  if proposition in solution:
+      lettres_trouvees = lettres_trouvees + proposition
+      print("-> Bien vu!")
+  else:
+    tentatives = tentatives - 1
+    print("-> Nope\n")
+    if tentatives==0:
+        print(" ==========Y= ")
+    if tentatives<=1:
+        print(" ||/       |  ")
+    if tentatives<=2:
+        print(" ||        0  ")
+    if tentatives<=3:
+        print(" ||       /|\ ")
+    if tentatives<=4:                    
+        print("/||           ")
+    if tentatives<=5:
+        print("==============\n")
 
+  affichage = ""
+  for x in solution:
+      if x in lettres_trouvees:
+          affichage += x + " "
+      else:
+          affichage += "_ "
 
-
-fin = False
-essai  = 0
-while essai < 9 and fin == False:
-    reponse = input("Quelle est votre lettre ?")
-    for lettreDeLaListe in lettre:
-        if reponse == lettreDeLaListe:
-            positionDeLaLettre = lettre.index(reponse)
-            motCache[positionDeLaLettre] = lettreDeLaListe
-    print(" ".join(motCache))
-    etat = True
-    for lettreCache in motCache:
-        if lettreCache == "-":
-            etat = False
-    if etat == True:
-        fin = True
-    if etat == False:
-        essai += 1
-if fin == True:
-
-
-    print("Bravo tu as gagné")
-else:
-    print("Tu as pris trop d'essai pour trouver ")
-
+  if "_" not in affichage:
+      print(">>> Gagné! <<<")
+      break
+     
+print("\n    * Fin de la partie *    ")
