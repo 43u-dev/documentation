@@ -2,10 +2,10 @@ import tkinter as tk
 from tkinter import messagebox
 import random
 
-# Liste de mots possibles
+
 MOTS = ["python", "robot", "intelligence", "machine", "ordinateur"]
 
-# ASCII Art pour chaque étape du pendu
+
 PENDU_ASCII = [
     "",
     "____\n",
@@ -21,13 +21,13 @@ class JeuPendu:
         self.root = root
         self.root.title("Jeu du Pendu")
 
-        # Choisir un mot aléatoire
+        
         self.mot_a_deviner = random.choice(MOTS)
         self.lettres_trouvees = ["_" for _ in self.mot_a_deviner]
         self.lettres_proposees = set()
         self.essais_restants = 6
 
-        # Interface graphique
+        
         self.label_mot = tk.Label(root, text=" ".join(self.lettres_trouvees), font=("Courier", 24))
         self.label_mot.pack(pady=10)
 
@@ -60,7 +60,7 @@ class JeuPendu:
             return
 
         self.lettres_proposees.add(lettre)
-        self.label_erreur.config(text="")  # Réinitialiser le message d'erreur
+        self.label_erreur.config(text="")  
 
         if lettre in self.mot_a_deviner:
             for i, c in enumerate(self.mot_a_deviner):
